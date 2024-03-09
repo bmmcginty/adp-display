@@ -87,19 +87,19 @@ var ret;
 ret=[];
 Array.from(document.getElementsByClassName(cls)).forEach(function(elem) {
 if(elem.checked==true) {
-ret.push(elem.getAttribute("aria-label"));
+ret.push(elem.getAttribute("x-value"));
 }
 });
 if(! ret && ! filter_on_empty) {
 Array.from(document.getElementsByClassName(cls)).forEach(function(elem) {
-ret.push(elem.getAttribute("aria-label"));
+ret.push(elem.getAttribute("x-value"));
 });
 }
 return ret;
 };
 set_checked_checkboxes=function(list, cls) {
 Array.from(document.getElementsByClassName(cls)).forEach(function(elem) {
-if(list.indexOf(elem.getAttribute("aria-label"))>-1) {
+if(list.indexOf(elem.getAttribute("x-value"))>-1) {
 elem.checked=true;
 } else {
 elem.checked=false;
@@ -113,7 +113,7 @@ keys.sort();
 idx=0;
 keys.forEach(function(key) {
 idx+=1;
-box_id=`box-${box_id}-${idx}`;
+box_id=`box-${cls}-${idx}`;
 label=document.createElement("label");
 input=document.createElement("input");
 label.innerText=key;
@@ -121,7 +121,7 @@ label.setAttribute("for", box_id);
 input.addEventListener("change", save_and_filter);
 input.setAttribute("id", box_id);
 input.setAttribute("type", "checkbox");
-input.setAttribute("aria-label", key);
+input.setAttribute("x-value", key);
 input.setAttribute("class", cls);
 li=document.createElement("li");
 li.appendChild(label);
